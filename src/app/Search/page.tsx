@@ -31,12 +31,12 @@ export default function VehicleSearch() {
                     <h1 className=''>sample Search</h1>
                     <div className='text-red-500 flex flex-col gap-2 mt-4'>
                     <div>
-                        <h1> plateNumber: 'KDS456T' </h1>
-                        <h1>vin: 'ERC123456789W',</h1>
+                        <h1> plateNumber KDS456T </h1>
+                        <h1>vin ERC123456789W</h1>
                     </div>
                     <div>
-                        <h1>plateNumber: 'KDG123G',</h1>
-                        <h1>vin: 'ABC2345678X',</h1>
+                        <h1>plateNumber KDG123G</h1>
+                        <h1>vin ABC2345678X</h1>
                     </div>
                     </div>
                 </div>
