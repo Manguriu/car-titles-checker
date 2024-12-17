@@ -1,87 +1,72 @@
-'use client'
+import Link from 'next/link'
+import { ArrowRight, Shield, Search, AlertTriangle } from 'lucide-react'
 
-import { useState } from 'react'
-import { useActionState } from 'react' // Updated hook
-import { searchVehicleAction } from './actions'
-import { AccidentDetails } from './components/AccidentDetails'
-import { Vehicle } from '../utils/VehicleData'
 
-export default function VehicleSearch() {
-  const [searchResult, formAction] = useActionState(searchVehicleAction, null) // Updated
-  const [searchPerformed, setSearchPerformed] = useState(false)
+interface FeatureCardProps {
+  icon: React.ReactNode
+  title: string
+  description: string
+}
 
+
+export default function LandingPage() {
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Vehicle Search</h1>
-      <form
-        action={formAction}
-        onSubmit={() => setSearchPerformed(true)}
-        className="mb-4"
-      >
-        <input
-          type="text"
-          name="searchTerm"
-          placeholder="Enter plate number or VIN"
-          className="border p-2 mr-2"
-          required
-        />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded">
-          Search
-        </button>
-      </form>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-green-50 to-orange-50">
+      <header className="container mx-auto px-4 py-8">
+        <nav className="flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-blue-600">VehicleCheck</h1>
+          <Link href="/Search" className="bg-orange-500 text-white px-6 py-3 rounded-full hover:bg-orange-600 transition-all shadow-lg hover:shadow-xl">
+            Get Started
+          </Link>
+        </nav>
+      </header>
 
-      {/* Display error if exists */}
-      {searchPerformed && searchResult && 'error' in searchResult && (
-        <p className="text-red-500">{searchResult.error}</p>
-      )}
+      <main className="container mx-auto px-4 py-20">
+        <div className="text-center mb-20">
+          <h2 className="text-5xl md:text-6xl font-bold text-blue-800 mb-6 leading-tight">Your Trusted Vehicle <br />History Partner</h2>
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">Uncover the truth about any vehicle with just a plate number or VIN</p>
+          <Link href="/Search" className="inline-flex items-center bg-green-500 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-green-600 transition-all shadow-lg hover:shadow-xl">
+            Start Your Search
+            <ArrowRight className="ml-2" />
+          </Link>
+        </div>
 
-      {/* Display vehicle details if search was successful */}
-      {searchPerformed &&
-        searchResult &&
-        'vehicle' in searchResult &&
-        searchResult.vehicle && (
-          <VehicleDetails vehicle={searchResult.vehicle} />
-        )}
+        <div className="grid md:grid-cols-3 gap-12">
+          <FeatureCard 
+            icon={<Shield className="w-16 h-16 text-blue-500" />}
+            title="Comprehensive Reports"
+            description="Get detailed information about ownership, accidents, and more."
+          />
+          <FeatureCard 
+            icon={<Search className="w-16 h-16 text-green-500" />}
+            title="Easy to Use"
+            description="Simply enter a plate number or VIN to get started."
+          />
+          <FeatureCard 
+            icon={<AlertTriangle className="w-16 h-16 text-orange-500" />}
+            title="Accident History"
+            description="View detailed accident reports including images and causes."
+          />
+        </div>
+      </main>
+
+      <footer className="bg-blue-800 text-white py-12">
+        <div className="container mx-auto px-4 text-center">
+          <p className="text-lg">&copy; 2023 VehicleCheck. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   )
 }
 
-function VehicleDetails({ vehicle }: { vehicle: Vehicle }) {
+function FeatureCard({ icon, title, description }: FeatureCardProps) {
   return (
-    <div className="border rounded-lg p-4">
-      <h2 className="text-xl font-semibold mb-2">Vehicle Details</h2>
-      <p>
-        <strong>Make:</strong> {vehicle.make}
-      </p>
-      <p>
-        <strong>Model:</strong> {vehicle.model}
-      </p>
-      <p>
-        <strong>Year:</strong> {vehicle.year}
-      </p>
-      <p>
-        <strong>Owner:</strong> {vehicle.owner}
-      </p>
-      <p>
-        <strong>Plate Number:</strong> {vehicle.plateNumber}
-      </p>
-      <p>
-        <strong>VIN:</strong> {vehicle.vin}
-      </p>
-      {vehicle.salvageStatus && (
-        <p>
-          <strong>Salvage Status:</strong> {vehicle.salvageStatus}
-        </p>
-      )}
-
-      <h3 className="text-lg font-semibold mt-4 mb-2">Accident History</h3>
-      {vehicle.accidents.length > 0 ? (
-        vehicle.accidents.map(accident => (
-          <AccidentDetails key={accident.id} accident={accident} />
-        ))
-      ) : (
-        <p>No accidents reported.</p>
-      )}
+    <div className="bg-white p-8 rounded-2xl shadow-lg text-center transition-all hover:shadow-xl">
+      <div className="flex justify-center mb-6">{icon}</div>
+      <h3 className="text-2xl font-semibold mb-4 text-blue-800">{title}</h3>
+      <p className="text-gray-600 leading-relaxed">{description}</p>
     </div>
   )
 }
+
+

@@ -20,8 +20,8 @@ export interface Accident {
   
   const mockVehicles: Vehicle[] = [
     {
-      plateNumber: 'ABC123',
-      vin: '1HGCM82633A004352',
+      plateNumber: 'KDG123G',
+      vin: 'ABC2345678X',
       make: 'Honda',
       model: 'Accord',
       year: 2019,
@@ -30,8 +30,8 @@ export interface Accident {
         {
           id: '1',
           date: '2021-05-15',
-          location: 'Main St & 5th Ave, Cityville',
-          policeStation: 'Cityville Central',
+          location: 'Nakuru Naivasha highway Kinugi',
+          policeStation: 'Kinungi Police Post',
           cause: 'Natural accident',
           images: ['/damaged1.png']
         }
@@ -39,8 +39,8 @@ export interface Accident {
       salvageStatus: 'Clean'
     },
     {
-      plateNumber: 'XYZ789',
-      vin: '5XYZU3LB0DG006195',
+      plateNumber: 'KDS456T',
+      vin: 'ERC123456789W',
       make: 'Toyota',
       model: 'Camry',
       year: 2020,
@@ -49,16 +49,16 @@ export interface Accident {
         {
           id: '1',
           date: '2022-03-10',
-          location: 'Highway 101, Mile Marker 25',
-          policeStation: 'Highway Patrol Station 3',
+          location: 'Thika road Githurai',
+          policeStation: 'Kasarani Police Station',
           cause: 'Drunk driving',
           images: ['/damaged1to.png']
         },
         {
           id: '2',
           date: '2023-01-22',
-          location: 'Oak St & Elm Rd, Townsville',
-          policeStation: 'Townsville PD',
+          location: 'Kilimani east side',
+          policeStation: 'Kilimani Police Station',
           cause: 'Brake fail',
           images: ['/damaged2.png']
         }
